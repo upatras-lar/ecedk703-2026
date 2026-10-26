@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<robot name="double_pendulum" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Base link: a cube -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.03 0.03 0.03"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <material name="gray">
+        <color rgba="0.5 0.5 0.5 0.5"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- First joint -->
+  <joint name="joint1" type="revolute">
+    <parent link="base_link"/>
+    <child link="joint1_sphere"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-3.14" upper="3.14" effort="0.15" velocity="25"/>
+  </joint>
+
+  <!-- First joint sphere -->
+  <link name="joint1_sphere">
+    <visual>
+      <geometry>
+        <sphere radius="0.01"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <material name="blue">
+        <color rgba="0 0 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- First fixed joint -->
+  <joint name="joint1_link" type="fixed">
+    <parent link="joint1_sphere"/>
+    <child link="link1"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- First pendulum link -->
+  <link name="link1">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+      <origin xyz="0 0 -0.025" rpy="0 0 0"/>
+      <material name="blue">
+        <color rgba="0 0 1 0.5"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Second joint -->
+  <joint name="joint2" type="revolute">
+    <parent link="link1"/>
+    <child link="joint2_sphere"/>
+    <origin xyz="0 0 -0.05" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-3.14" upper="3.14" effort="0.15" velocity="35"/>
+  </joint>
+
+  <!-- Second joint sphere -->
+  <link name="joint2_sphere">
+    <visual>
+      <geometry>
+        <sphere radius="0.01"/>
+      </geometry>
+      <material name="red">
+        <color rgba="1 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Second fixed joint -->
+  <joint name="joint2_link" type="fixed">
+    <parent link="joint2_sphere"/>
+    <child link="link2"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Second pendulum link -->
+  <link name="link2">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+      <origin xyz="0 0 -0.025" rpy="0 0 0"/>
+      <material name="red">
+        <color rgba="1 0 0 0.5"/>
+      </material>
+    </visual>
+  </link>
+
+</robot>
