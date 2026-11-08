@@ -1,0 +1,34 @@
+In order to be able to build everything, you need to have the following directory structure:
+
+sensors_ws
+          |
+          src
+            |
+            camera_pkg
+            lidar_pkg
+            rplidar_ros
+            v4l2_camera
+
+
+First of all make sure that you are on the galactic branch of v4l2_camera package:
+
+- cd sensors_ws/src/v4l2_camera
+- git checkout galactic
+
+Then you need to install the image_common package. Unfortunately for ROS2 gala there is no apt install, so we need to build it from source.
+Inside the src folder of course:
+
+- cd src
+- git clone https://github.com/ros-perception/image_common.git -b galactic
+- cd ..
+- rosdep install --from-paths src -y --ignore-src
+
+
+Now we can build all the packages (this might take awhile):
+
+- colcon build --symlink-install
+
+It is possible that the rplidar_ros package will build with an stderr. That's fine just source and rebuilt it:
+
+- source /opt/ros/galactic/setup.bash
+- colcon build --symlink-install --packages-select rplidar_ros
