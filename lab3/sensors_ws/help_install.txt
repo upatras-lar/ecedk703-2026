@@ -15,6 +15,10 @@ In order to install the extra packages v4l2_camera and rplidar_ros, you need to 
 git clone -b galactic https://github.com/tier4/ros2_v4l2_camera.git v4l2_camera
 git clone -b ros2 https://github.com/Slamtec/rplidar_ros.git
 
+Do also this, it may be needed in some cases:
+
+git clone -b galactic https://github.com/ros/diagnostics.git
+
 
 After the installations, first of all, make sure that you are on the galactic branch of v4l2_camera package:
 
