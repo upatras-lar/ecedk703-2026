@@ -10,7 +10,13 @@ sensors_ws
             v4l2_camera
 
 
-First of all make sure that you are on the galactic branch of v4l2_camera package:
+In order to install the extra packages v4l2_camera and rplidar_ros, you need to git clone them with the following commands:
+
+git clone -b galactic https://github.com/tier4/ros2_v4l2_camera.git v4l2_camera
+git clone -b ros2 https://github.com/Slamtec/rplidar_ros.git
+
+
+After the installations, first of all, make sure that you are on the galactic branch of v4l2_camera package:
 
 - cd sensors_ws/src/v4l2_camera
 - git checkout galactic
